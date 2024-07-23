@@ -1,1 +1,1 @@
-pub use crate::dolly::{drivers::*, handedness::*, rig::*, driver::*};
+pub use crate::{drivers::*, handedness::*, rig::*, driver::*};
