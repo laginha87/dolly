@@ -13,12 +13,10 @@ use crate::{
 */
 
 /// Directly sets the position of the camera
-#[derive(Debug)]
-#[derive(Default)]
+#[derive(Debug, Default)]
 pub struct Position {
     pub position: Vec3,
 }
-
 
 impl Position {
     pub fn new<P>(position: P) -> Self
