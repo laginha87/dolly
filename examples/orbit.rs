@@ -13,39 +13,41 @@ use macroquad::{
 };
 
 #[macroquad::main("dolly orbit example")]
-async fn main() {
+fn main() {
+    /*
     // Create a smoothed orbit camera
     let mut camera: CameraRig = CameraRig::builder()
         .with(YawPitch::new().yaw_degrees(45.0).pitch_degrees(-30.0))
         .with(Smooth::new_rotation(1.5))
-        .with(Arm::new(glam::Vec3::Z * 8.0))
+        .with(Arm::new(Vec3::Z * 8.0))
         .build();
 
-    loop {
-        // Handle camera input
-        if is_key_pressed(KeyCode::Z) {
-            camera.driver_mut::<YawPitch>().rotate_yaw_pitch(-90.0, 0.0);
-        }
-        if is_key_pressed(KeyCode::X) {
-            camera.driver_mut::<YawPitch>().rotate_yaw_pitch(90.0, 0.0);
-        }
 
-        // Update the camera rig, and get the interpolated transform
-        let camera_xform = camera.update(get_frame_time());
+        loop {
+            // Handle camera input
+            if is_key_pressed(KeyCode::Z) {
+                camera.driver_mut::<YawPitch>().rotate_yaw_pitch(-90.0, 0.0);
+            }
+            if is_key_pressed(KeyCode::X) {
+                camera.driver_mut::<YawPitch>().rotate_yaw_pitch(90.0, 0.0);
+            }
 
-        clear_background(LIGHTGRAY);
+            // Update the camera rig, and get the interpolated transform
+            let camera_xform = camera.update(get_frame_time());
 
-        // Pass the camera to macroquad, doing some gymnastics to convince
-        // the two different `glam` versions to talk to each other.
-        set_camera(&Camera3D {
-            position: <[f32; 3]>::from(camera_xform.position).into(),
-            up: <[f32; 3]>::from(camera_xform.up::<glam::Vec3>()).into(),
-            target: <[f32; 3]>::from(
-                glam::Vec3::from(camera_xform.position) + camera_xform.forward::<glam::Vec3>(),
-            )
-            .into(),
-            ..Default::default()
-        });
+            clear_background(LIGHTGRAY);
+
+            // Pass the camera to macroquad, doing some gymnastics to convince
+            // the two different `glam` versions to talk to each other.
+            set_camera(&Camera3D {
+                position: <[f32; 3]>::from(camera_xform.position).into(),
+                up: <[f32; 3]>::from(camera_xform.up::<glam::Vec3>()).into(),
+                target: <[f32; 3]>::from(
+                    glam::Vec3::from(camera_xform.position) + camera_xform.forward::<glam::Vec3>(),
+                )
+                .into(),
+                ..Default::default()
+            });
 
         draw_grid(20, 1., BLACK, GRAY);
 
@@ -64,4 +66,5 @@ async fn main() {
 
         next_frame().await
     }
+    */
 }
