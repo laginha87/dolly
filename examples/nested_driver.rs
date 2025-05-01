@@ -1,5 +1,5 @@
 // Based on https://github.com/not-fl3/macroquad/blob/97a99d00155cb7531f4432a2eb5f3c587e22f9b3/examples/3d.rs
-
+/* 
 use dolly::{driver::RigDriver, prelude::*};
 use macroquad::{
     prelude::{
@@ -23,7 +23,7 @@ impl<H: Handedness> RigDriver<H> for MovableLookAt<H> {
 }
 
 impl<H: Handedness> MovableLookAt<H> {
-    pub fn from_position_target(camera_position: glam::Vec3, target_position: glam::Vec3) -> Self {
+    pub fn from_position_target(camera_position: Vec3, target_position: Vec3) -> Self {
         Self(
             CameraRig::builder()
                 // Allow moving the camera
@@ -32,15 +32,15 @@ impl<H: Handedness> MovableLookAt<H> {
                 .with(Smooth::new_position(1.25).predictive(true))
                 // Smooth the predicted movement
                 .with(Smooth::new_position(2.5))
-                .with(LookAt::new(target_position + glam::Vec3::Y).tracking_smoothness(1.25))
+                .with(LookAt::new(target_position + Vec3::Y).tracking_smoothness(1.25))
                 .build(),
         )
     }
 
     pub fn set_position_target(
         &mut self,
-        camera_position: glam::Vec3,
-        target_position: glam::Vec3,
+        camera_position: Vec3,
+        target_position: Vec3,
     ) {
         self.0.driver_mut::<Position>().position = camera_position.into();
         self.0.driver_mut::<LookAt>().target = target_position.into();
@@ -53,8 +53,8 @@ async fn main() {
     info!("{}", "Spacebar and LShift to go up and down");
     info!("{}", "C to switch between player and camera");
 
-    let mut camera_position = glam::Vec3::new(4., 3., 8.);
-    let mut player_position = glam::Vec3::new(2., 1.01, 2.);
+    let mut camera_position = Vec3::new(4., 3., 8.);
+    let mut player_position = Vec3::new(2., 1.01, 2.);
 
     // Create a camera rig with our custom nested `MovableLookAt` driver within.
     let mut camera = CameraRig::builder()
@@ -98,20 +98,17 @@ async fn main() {
         // the two different `glam` versions to talk to each other.
         set_camera(&Camera3D {
             position: camera_xform.position.d2m(),
-            up: camera_xform.up::<glam::Vec3>().d2m(),
-            target: (glam::Vec3::from(camera_xform.position)
-                + camera_xform.forward::<glam::Vec3>())
+            up: camera_xform.up::<Vec3>().d2m(),
+            target: (Vec3::from(camera_xform.position)
+                + camera_xform.forward::<Vec3>())
             .d2m(),
             ..Default::default()
         });
 
         set_camera(&Camera3D {
-            position: <[f32; 3]>::from(camera_xform.position).into(),
-            up: <[f32; 3]>::from(camera_xform.up::<glam::Vec3>()).into(),
-            target: <[f32; 3]>::from(
-                glam::Vec3::from(camera_xform.position) + camera_xform.forward::<glam::Vec3>(),
-            )
-            .into(),
+            position: camera_xform.position.into(),
+            up: camera_xform.up().into(),
+            target: Vec3::from(camera_xform.position) + camera_xform.forward(),
             ..Default::default()
         });
 
@@ -138,7 +135,7 @@ trait DollyToMacroquad {
     fn d2m(self) -> Self::Target;
 }
 
-impl DollyToMacroquad for glam::Vec3 {
+impl DollyToMacroquad for Vec3 {
     type Target = Vec3;
 
     fn d2m(self) -> Self::Target {
@@ -146,7 +143,7 @@ impl DollyToMacroquad for glam::Vec3 {
     }
 }
 
-impl DollyToMacroquad for mint::Vector3<f32> {
+impl DollyToMacroquad for Vec3 {
     type Target = Vec3;
 
     fn d2m(self) -> Self::Target {
@@ -154,7 +151,7 @@ impl DollyToMacroquad for mint::Vector3<f32> {
     }
 }
 
-impl DollyToMacroquad for mint::Point3<f32> {
+impl DollyToMacroquad for Vec3 {
     type Target = Vec3;
 
     fn d2m(self) -> Self::Target {
@@ -162,10 +159,10 @@ impl DollyToMacroquad for mint::Point3<f32> {
     }
 }
 
-fn get_move_input() -> glam::Vec3 {
+fn get_move_input() -> Vec3 {
     const SPEED: f32 = 0.05;
 
-    let mut delta_pos = glam::Vec3::ZERO;
+    let mut delta_pos = Vec3::ZERO;
 
     if is_key_down(KeyCode::D) {
         delta_pos.x += SPEED;
@@ -188,3 +185,4 @@ fn get_move_input() -> glam::Vec3 {
 
     delta_pos
 }
+*/
