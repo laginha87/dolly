@@ -1,5 +1,5 @@
 // Based on https://github.com/not-fl3/macroquad/blob/97a99d00155cb7531f4432a2eb5f3c587e22f9b3/examples/3d.rs
-/* 
+/*
 use dolly::{driver::RigDriver, prelude::*};
 use macroquad::{
     prelude::{
