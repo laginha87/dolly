@@ -57,7 +57,8 @@ pub fn look_at(forward: Vec3) -> Quat {
     forward
         .try_normalize()
         .and_then(|forward| {
-            let right = H::right_from_up_and_forward(Vec3::Y, forward).try_normalize()?;
+            let right =
+                H::right_from_up_and_forward::<Vec3, Vec3>(Vec3::Y, forward).try_normalize()?;
             let up = H::up_from_right_and_forward(right, forward);
             Some(Quat::from_mat3(&Mat3::from_cols(
                 right,
@@ -65,6 +66,8 @@ pub fn look_at(forward: Vec3) -> Quat {
                 forward * H::FORWARD_Z_SIGN,
             )))
         })
-        .unwrap_or_default()
+        .unwrap_or_default();
+
+    From::from(result.into())
 }
 */

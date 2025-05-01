@@ -14,13 +14,16 @@ use crate::{
 /// Offsets the camera along a vector, in the coordinate space of the parent.
 #[derive(Debug)]
 pub struct Arm {
-    ///
-    pub offset: Vec3,
+    pub offset: mint::Vector3<f32>,
 }
 
 impl Arm {
-    ///
-    pub fn new(offset: Vec3) -> Self {
+    pub fn new<V>(offset: V) -> Self
+    where
+        V: Into<mint::Vector3<f32>>,
+    {
+        let offset = offset.into();
+
         Self { offset }
     }
 }

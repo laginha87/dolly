@@ -25,7 +25,7 @@ pub struct LookAt {
     pub smoothness: f32,
 
     /// The world-space position to look at
-    pub target: Vec3,
+    pub target: mint::Point3<f32>,
 
     // The scale with which smoothing should be applied to the target position
     output_offset_scale: f32,
@@ -34,8 +34,12 @@ pub struct LookAt {
 }
 
 impl LookAt {
-    ///
-    pub fn new(target: Vec3) -> Self {
+    pub fn new<P>(target: P) -> Self
+    where
+        P: Into<mint::Point3<f32>>,
+    {
+        let target = target.into();
+
         Self {
             smoothness: 0.0,
             output_offset_scale: 1.0,
@@ -64,7 +68,7 @@ impl LookAt {
 impl RigDriver for LookAt {
     fn update(&mut self, params: RigUpdateParams) -> Transform {
         let target = self.smoothed_target.exp_smooth_towards(
-            &self.target,
+            &other,
             ExpSmoothingParams {
                 smoothness: self.smoothness,
                 output_offset_scale: self.output_offset_scale,
