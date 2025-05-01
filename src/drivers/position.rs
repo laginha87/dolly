@@ -14,17 +14,11 @@ use crate::{
 
 /// Directly sets the position of the camera
 #[derive(Debug)]
+#[derive(Default)]
 pub struct Position {
     pub position: Vec3,
 }
 
-impl Default for Position {
-    fn default() -> Self {
-        Self {
-            position: Vec3::default().into(),
-        }
-    }
-}
 
 impl Position {
     pub fn new<P>(position: P) -> Self
@@ -41,9 +35,9 @@ impl Position {
     where
         V: Into<Vec3>,
     {
-        let position: Vec3 = From::from(self.position);
-        let move_vec: Vec3 = move_vec.into().into();
-        self.position = (position + move_vec).into();
+        let position: Vec3 = self.position;
+        let move_vec: Vec3 = move_vec.into();
+        self.position = position + move_vec;
     }
 }
 

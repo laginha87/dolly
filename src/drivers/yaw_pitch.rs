@@ -87,7 +87,7 @@ impl YawPitch {
     where
         Q: Into<Quat>,
     {
-        let rotation: Quat = rotation.into().into();
+        let rotation: Quat = rotation.into();
         let (yaw, pitch, _) = rotation.to_euler(EulerRot::YXZ);
         self.yaw_degrees = yaw.to_degrees();
         self.pitch_degrees = pitch.to_degrees();

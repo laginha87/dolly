@@ -14,17 +14,11 @@ use crate::{
 
 /// Directly sets the rotation of the camera
 #[derive(Debug)]
+#[derive(Default)]
 pub struct Rotation {
     pub rotation: Quat,
 }
 
-impl Default for Rotation {
-    fn default() -> Self {
-        Self {
-            rotation: Quat::default().into(),
-        }
-    }
-}
 
 impl Rotation {
     pub fn new<Q>(rotation: Q) -> Self
