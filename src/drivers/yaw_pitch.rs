@@ -57,7 +57,7 @@ impl YawPitch {
     /// Any roll rotation will be ignored.
     pub fn rotation_quat<Q>(mut self, rotation: Q) -> Self
     where
-        Q: Into<mint::Quaternion<f32>>,
+        Q: Into<Quat>,
     {
         self.set_rotation_quat(rotation);
         self
@@ -85,7 +85,7 @@ impl YawPitch {
     /// Any roll rotation will be ignored.
     pub fn set_rotation_quat<Q>(&mut self, rotation: Q)
     where
-        Q: Into<mint::Quaternion<f32>>,
+        Q: Into<Quat>,
     {
         let rotation: Quat = rotation.into().into();
         let (yaw, pitch, _) = rotation.to_euler(EulerRot::YXZ);

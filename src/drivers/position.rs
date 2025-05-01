@@ -15,7 +15,7 @@ use crate::{
 /// Directly sets the position of the camera
 #[derive(Debug)]
 pub struct Position {
-    pub position: mint::Point3<f32>,
+    pub position: Vec3,
 }
 
 impl Default for Position {
@@ -29,7 +29,7 @@ impl Default for Position {
 impl Position {
     pub fn new<P>(position: P) -> Self
     where
-        P: Into<mint::Point3<f32>>,
+        P: Into<Vec3>,
     {
         let position = position.into();
 
@@ -39,7 +39,7 @@ impl Position {
     /// Add the specified vector to the position of this component
     pub fn translate<V>(&mut self, move_vec: V)
     where
-        V: Into<mint::Vector3<f32>>,
+        V: Into<Vec3>,
     {
         let position: Vec3 = From::from(self.position);
         let move_vec: Vec3 = move_vec.into().into();

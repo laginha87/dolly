@@ -93,7 +93,7 @@ impl RigDriver for Smooth {
         );
 
         let rotation = self.smoothed_rotation.exp_smooth_towards(
-            &parent_rotation,
+            &params.parent.rotation,
             ExpSmoothingParams {
                 smoothness: self.rotation_smoothness,
                 output_offset_scale: self.output_offset_scale,
